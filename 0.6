@@ -1,0 +1,11 @@
+browser -> server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over browser
+browser sends over new note as JSON-data using javascript code from the server
+end note
+
+server -> browser: [{content: '1', date: '2022-12-28T21:16:58.058Z'}...]
+
+note over browser
+browser executes the event handler that renders notes and new note to display
+end note
