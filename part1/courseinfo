@@ -1,18 +1,25 @@
-const App = () => { //App is the component sending data using props to the other components
+const App = () => {
   const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
-      return (
-        <div>
-          <Header course = {course} />
-          <Content part1 = {part1} exercises1 = {exercises1} part2={part2} exercises2 = {exercises2} part3={part3} exercises3 = {exercises3}/>
-          <Total exercises1 = {exercises1} exercises2 = {exercises2} exercises3 = {exercises3}/>
-        </div>
-      )
+  const part1 = {
+    name: 'Fundamentals of React',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Using props to pass data',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'State of a component',
+    exercises: 14
+  }
+
+  return (
+    <div>
+      <Header course = {course} />
+      <Content part1={part1} part2={part2} part3={part3} />
+    <Total exercises1 = {part1['exercises']} exercises2 = {part2['exercises']} exercises3 = {part3['exercises']}/>
+    </div>
+  )
 }
 
 const Header = (props) => {
@@ -23,12 +30,13 @@ const Header = (props) => {
   )
 }
 
-const Content = (props) => { //Content does not render any names of parts itself. it renders Part components, and the Part components render the name and no. of exercises of one part
+const Content = (props) => { 
+  
   return (
     <div>
-    <Part part1 = {props.part1} exercises1={props.exercises1}/> {/* part will only render the name and exercise that is declared each time*/}
-    <Part part2 = {props.part2} exercises2={props.exercises2}/>
-    <Part part3={props.part3} exercises3={props.exercises3}/> 
+    <Part name1={props.part1.name}  exercises1 ={props.part1.exercises}/> 
+    <Part name2={props.part2.name}  exercises2 ={props.part2.exercises} />
+    <Part name3={props.part3.name}  exercises3 ={props.part3.exercises} /> 
     </div>
   )
 }
@@ -36,9 +44,9 @@ const Content = (props) => { //Content does not render any names of parts itself
 const Part = (props) => { 
   return (
     <p>
-      {props.part1} {props.exercises1}
-      {props.part2} {props.exercises2}
-      {props.part3} {props.exercises3}
+      {props.name1} {props.exercises1}
+      {props.name2} {props.exercises2} 
+      {props.name3} {props.exercises3}
     </p>
   
   )
@@ -46,7 +54,7 @@ const Part = (props) => {
 const Total = (props) => {
   return (
     <p>
-     Number of exercises {props.exercises1 + props.exercises2 + props.exercises3}
+     Number of exercises {props.exercises1 +  props.exercises2 + props.exercises3}
     </p>
   )
 }
